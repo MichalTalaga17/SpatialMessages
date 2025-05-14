@@ -1,11 +1,82 @@
-//
-//  MessagesListView.swift
-//  SpatialMessages
-//
-//  Created by Michał Talaga on 10/04/2025.
-//
-
 import SwiftUI
+
+struct MessagesView: View {
+    var body: some View {
+            ScrollView {
+                VStack(spacing: 20) {
+                    AvatarsView()
+                    MessagesListView()
+                }
+                .background(Color.clear)
+                .padding()
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Messages")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                }
+
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Menu {
+                        Button("Option 1") {
+                            // Action for Option 1
+                        }
+                        Button("Option 2") {
+                            // Action for Option 2
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle.fill")
+                            .foregroundColor(.gray)
+                            .font(.headline)
+                    }
+
+                    Button {
+                        // Plus button action
+                    } label: {
+                        Image(systemName: "plus.circle.fill")
+                            .foregroundColor(.gray)
+                            .font(.title3)
+                    }
+                }
+            }
+            .scrollContentBackground(.hidden)
+            .background(Color.clear)
+        }
+        
+
+
+    
+}
+
+struct AvatarsView: View {
+    let users = [
+        ("Daniel", "Contact1"),
+        ("Jason", "Contact2"),
+        ("Megan", "Contact4")
+    ]
+    
+    var body: some View {
+            HStack {
+                ForEach(users, id: \.0) { user in
+                    VStack {
+                        Image(user.1)
+                            .resizable()
+                            .scaledToFit()
+                            .padding(.top, 10)
+                            .frame(width: 110, height: 110)
+                            .foregroundColor(.white)
+                        Text(user.0)
+                            .font(.caption)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+            }
+            .padding(0.0)
+        
+    }
+}
 
 struct MessagesListView: View {
     let messages = [
@@ -30,9 +101,11 @@ struct MessagesListView: View {
     var body: some View {
         VStack(spacing: 16) {
             NavigationStack {
-                ForEach(messages) { message in
-                    MessageRowView(message: message)
-                }
+                    ForEach(messages) { message in
+                        MessageRowView(message: message)
+                    }
+                
+                
             }
            
         }
@@ -40,6 +113,7 @@ struct MessagesListView: View {
         
     }
 }
+
 #Preview {
-    MessagesListView()
+    MessagesView()
 }

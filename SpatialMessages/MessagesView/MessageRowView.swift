@@ -19,11 +19,11 @@ struct MessageRowView: View {
     let message: MessageRow
     
     var body: some View {
-        NavigationLink(destination: Text(message.preview)) {
+        NavigationLink(destination: ChatView()) {
             VStack {
                 HStack(alignment: .center, spacing: 12) {
                     Circle()
-                        .frame(width: 44, height: 44)
+                        .frame(width: 54, height: 54)
                         .overlay(
                             Image(message.icon ?? "Contact1")
                                 .resizable()
@@ -32,7 +32,7 @@ struct MessageRowView: View {
                         HStack {
                             Text(message.name)
                                 .font(.headline)
-                                .foregroundColor(.white)
+                                .foregroundColor(.primary)
                             Spacer()
                             Text(message.time)
                                 .font(.caption)

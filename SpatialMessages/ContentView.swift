@@ -11,20 +11,16 @@ import SwiftData
 struct ContentView: View {
 
     var body: some View {
-        ZStack {
-            Image("Background")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
-            
-            MessagesView()
+        
+        NavigationStack {
+            ZStack {
+                MessagesView()
+                    .background(Image("Background")
+                        .resizable()
+                        .scaledToFill()
+                        .ignoresSafeArea())
+            }
         }
-        .background(
-            Image("Background")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
-            )
     }
 }
 
